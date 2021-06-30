@@ -1,0 +1,193 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+
+/* reset */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    background: url("./Assets/Background.jpg");
+    background-size: cover;
+    background-position: top center;
+    font-size: 16px;
+    color: #0D2035 ;
+}
+
+
+/* variables */
+
+:root{
+    --headingFont:'Racing Sans One', 'cursive';
+    --paragraphFont:'Teko', sans-serif;
+
+
+}
+
+/* base designe */
+
+#homepage{
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+    min-height: 1vh;
+    grid-template-areas:
+    "heading heading heading heading heading heading heading heading"
+    "canvas canvas canvas canvas canvas canvas canvas canvas"
+    "aside aside aside aside aside aside aside aside";
+}
+
+.canvas{
+    grid-area: canvas;
+    display: grid;
+   
+}
+
+#tools{
+    grid-area: aside;
+    display: grid;
+    grid-template-columns: repeat(8,1fr);
+}
+
+.pallet{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+}
+.pallet p{
+    grid-column: 1/5;
+    text-align: center;
+    
+}
+#range-box{
+    width: 200px;
+}
+
+.slider{
+    -webkit-appearance: none;
+    background-color: #845ec2; 
+    height: 5px;
+    width:100%;
+    border-radius: 1rem;
+    
+}
+
+.indicator{
+    position: relative;
+ 
+    text-align: center;
+}
+
+.indicator-text{
+   
+    position: absolute;
+    z-index: 1;
+    top: -2.4rem;
+}
+
+
+.indicator-text::after{
+    content:"";
+    position: absolute;
+    background-color: red;
+    width: 1.9rem;
+    height:1.9rem;
+    top:-25%;
+    left:50%;
+    transform: translateX(-50%) rotate(45deg);
+    z-index: -1;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+
+}
+
+
+/* mobile designe */
+
+#homepage{
+    margin: 0.25rem;
+    gap: 0.652rem;
+}
+
+header{
+    grid-area: heading;
+    font-family: var(--headingFont);
+    text-align: center;
+}
+
+header h1{
+    font-size: 3.125rem;
+}
+
+.canvas{
+    width:100%;
+    height: 408px;
+    background: #c4c4c4;
+    grid-column: 1/9;
+}
+
+#tools{
+    gap: 0.652rem;
+}
+
+.pallet{
+    grid-area: pallet;
+    min-height: 11.3125rem;
+
+}
+
+.pallet p{
+    font-family: var(--paragraphFont);
+    font-size: 3.125rem;
+}
+
+#tools{
+    grid-template-areas: "pallet pallet pallet pallet pallet clear clear claer"
+    ". box box box box box box .";
+}
+
+.button{
+    grid-area: clear;
+}
+
+#range-box{
+    grid-area: box;
+}
+
+
+@media  screen and (min-width: 700px) {
+
+    
+
+    #homepage{
+        margin: 80px;
+        gap:24px;
+    grid-template-areas:
+    "heading heading heading heading heading heading heading heading"
+    "aside aside canvas  canvas canvas canvas canvas canvas"
+    "aside aside canvas  canvas  canvas canvas canvas canvas";
+}
+
+    .canvas{
+        grid-column: 3/9;
+    }
+
+    .pallet{
+        grid-column: 1/9;
+    }
+    #tools{
+        grid-column: 1/3;
+        background-color: aqua;
+    }
+}
+
+
+
+
+
+
