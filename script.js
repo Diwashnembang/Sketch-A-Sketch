@@ -1,10 +1,14 @@
-/* 30 june 
+/* 30 june 2021 
 sketch a sketch odin project
 diwash nembang
 
 features user can draw in a canvas
 */
+// let j;
+// let d;
 
+
+// move the pointer above the slider
 function moveIndicator() {
     const range = document.querySelector(".slider");
     const indicator = document.querySelector(".indicator-text");
@@ -16,7 +20,7 @@ function moveIndicator() {
 }
 
 function makeGrid(width, row) {
-    const canvas = document.querySelector(".canvas");
+    canvas = document.querySelector(".canvas");
     canvas.setAttribute("style", `grid-template-columns:repeat(${width},1fr`);
     for (let i = 0; i < width * row; i++) {
         cell = document.createElement("div");
@@ -26,27 +30,70 @@ function makeGrid(width, row) {
     }
 }
 
-function readyToDraw(e) {
-    const children = this.children;
+let d;
+function readyToDraw() {
+    const children =document.querySelector(".canvas").children;
     const cells = Array.from(children);
+    // console.log(e)
 
     cells.forEach((cell) => {
+        let a=[]
+        d=drawing.bind(cell,"green")
         cell.onclick = () => (cell.style.background = "black");
-        cell.addEventListener("mousemove", draw);
-        cell.addEventListener("mouseup", (e) => noDraw(cells));
+        // cell.addEventListener("mousemove",d);
+        a.push(cell.addEventListener("mousemove",d));
+        cell.addEventListener("mouseup", (e) => noDraw(cells,a[0]));
     });
 }
 
-function draw() {
-    this.style.background = "black";
-    addEventListener("mouseup", (e) =>
-        this.removeEventListener("mousemove", draw)
-    );
-}
+// function draw(elemn,event,f,v){
 
-function noDraw(cells) {
+//      d= ()=>{
+//         f(v,elemn)
+//     };
+
+//     // let c=d;
+        
+    
+//     elemn.addEventListener(event,d);
+//     return d;
+//     // console.log(this)
+// }
+
+
+// function addListenerWithArgs(elem, evt, func, vars){
+//     var f = function(ff, vv,ee){
+//             return (function (){
+//                 ff(vv,ee);
+//             });
+//     }(func, vars,elem);
+
+//     elem.addEventListener(evt, f);
+
+//     return f;
+// }
+
+// function draw(a,b){
+
+
+//     return function drawing(){
+//         let color=b;
+//         a.style.background=color;
+        
+        
+        
+//         // console.log(e.target.colors)
+        
+//     }
+    
+// }
+
+function drawing(color){
+    this.style.background=color;
+}
+function noDraw(cells,d) {
     cells.forEach((cell) => {
-        cell.removeEventListener("mousemove", draw);
+        cell.removeEventListener("mousemove", d);
     });
 }
 
@@ -59,8 +106,17 @@ function makeColorPallet() {
         let colorName = color.getAttribute("data-color");
         color.style.background = colorName;
         // console.log(colorName,"and",color);
+        // color.addEventListener("click",()=>readyToDraw.bind(null,colorName));
     });
 }
+
+// chooseColor(colorName){
+    
+
+
+// }
+
+
 
 function main() {
     moveIndicator();
