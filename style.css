@@ -107,6 +107,10 @@ body{
 }
 
 
+.button{
+    border: solid red 1px;
+}
+
 /* mobile designe */
 
 #homepage{

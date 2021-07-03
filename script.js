@@ -8,6 +8,7 @@ features user can draw in a canvas
 // let d;
 let brush="black";
 
+
 // move the pointer above the slider
 function moveIndicator() {
     const range = document.querySelector(".slider");
@@ -36,14 +37,14 @@ function readyToDraw() {
     const cells = Array.from(children);
 
     cells.forEach((cell) => {
-        let draw=drawing.bind(cell,brush)
-        cell.onclick = () => (cell.style.background = brush);
-        cell.addEventListener("mousemove",draw);
-        document.addEventListener("mouseup", (e) => { 
-            cell.removeEventListener("mousemove", draw)
+            let draw=drawing.bind(cell,brush)
+            cell.onclick = () => (cell.style.background = brush);
+            cell.addEventListener("mousemove",draw);
+            document.addEventListener("mouseup", (e) => { 
+                cell.removeEventListener("mousemove", draw)
+            });
+            // console.log(document);
         });
-        // console.log(document);
-})
 }
 
 
@@ -69,18 +70,32 @@ function makeColorPallet() {
     });
 }
 
-// chooseColor(colorName){
+function clearButton(){
+    const canvasChildren=document.querySelector(".canvas").children;
+    const cells=Array.from(canvasChildren);
+    const clear=document.querySelector(".button");
+    clear.addEventListener("click",()=>{
+        reset(cells);
+    });
+
+}
+
+function reset(cells){
+    console.log("yes");
+    cells.forEach(cell=>{cell.style.background="#c4c4c4"})
+    
+}
     
 
 
-// }
 
 
 
 function main() {
     moveIndicator();
-    makeGrid(30, 16);
+    makeGrid(16, 16);
     makeColorPallet();
+    clearButton();
 }
 
 main();
