@@ -30,63 +30,19 @@ function makeGrid(width, row) {
     }
 }
 
-let d;
+
 function readyToDraw() {
     const children =document.querySelector(".canvas").children;
     const cells = Array.from(children);
-    // console.log(e)
 
     cells.forEach((cell) => {
-        let a=[]
-        d=drawing.bind(cell,"green")
+        let d=drawing.bind(cell,"green")
         cell.onclick = () => (cell.style.background = "black");
-        // cell.addEventListener("mousemove",d);
-        a.push(cell.addEventListener("mousemove",d));
-        cell.addEventListener("mouseup", (e) => noDraw(cells,a[0]));
+        cell.addEventListener("mousemove",d);
+        cell.addEventListener("mouseup", (e) => noDraw(cells,d));
     });
 }
 
-// function draw(elemn,event,f,v){
-
-//      d= ()=>{
-//         f(v,elemn)
-//     };
-
-//     // let c=d;
-        
-    
-//     elemn.addEventListener(event,d);
-//     return d;
-//     // console.log(this)
-// }
-
-
-// function addListenerWithArgs(elem, evt, func, vars){
-//     var f = function(ff, vv,ee){
-//             return (function (){
-//                 ff(vv,ee);
-//             });
-//     }(func, vars,elem);
-
-//     elem.addEventListener(evt, f);
-
-//     return f;
-// }
-
-// function draw(a,b){
-
-
-//     return function drawing(){
-//         let color=b;
-//         a.style.background=color;
-        
-        
-        
-//         // console.log(e.target.colors)
-        
-//     }
-    
-// }
 
 function drawing(color){
     this.style.background=color;
