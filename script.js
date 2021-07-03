@@ -6,7 +6,7 @@ features user can draw in a canvas
 */
 // let j;
 // let d;
-
+let brush="black";
 
 // move the pointer above the slider
 function moveIndicator() {
@@ -36,22 +36,25 @@ function readyToDraw() {
     const cells = Array.from(children);
 
     cells.forEach((cell) => {
-        let d=drawing.bind(cell,"green")
-        cell.onclick = () => (cell.style.background = "black");
-        cell.addEventListener("mousemove",d);
-        cell.addEventListener("mouseup", (e) => noDraw(cells,d));
-    });
+        let draw=drawing.bind(cell,brush)
+        cell.onclick = () => (cell.style.background = brush);
+        cell.addEventListener("mousemove",draw);
+        document.addEventListener("mouseup", (e) => { 
+            cell.removeEventListener("mousemove", draw)
+        });
+        // console.log(document);
+})
 }
 
 
 function drawing(color){
     this.style.background=color;
 }
-function noDraw(cells,d) {
-    cells.forEach((cell) => {
-        cell.removeEventListener("mousemove", d);
-    });
-}
+// function noDraw(cells,d) {
+//     cells.forEach((cell) => {
+//         cell.removeEventListener("mousemove", d);
+//     });
+// }
 
 
 function makeColorPallet() {
@@ -62,7 +65,7 @@ function makeColorPallet() {
         let colorName = color.getAttribute("data-color");
         color.style.background = colorName;
         // console.log(colorName,"and",color);
-        // color.addEventListener("click",()=>readyToDraw.bind(null,colorName));
+        color.addEventListener("click",()=>brush=colorName);
     });
 }
 
@@ -76,7 +79,7 @@ function makeColorPallet() {
 
 function main() {
     moveIndicator();
-    makeGrid(16, 16);
+    makeGrid(30, 16);
     makeColorPallet();
 }
 
