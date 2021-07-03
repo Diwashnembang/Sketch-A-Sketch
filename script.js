@@ -17,16 +17,20 @@ function moveIndicator() {
     range.addEventListener("input", (e) => {
         indicator.textContent = range.value;
         indicator.style.left = range.value * 1.48 + "%";
+        // makeGrid(range.value,range.value);
     });
 }
 
 function makeGrid(width, row) {
+
     canvas = document.querySelector(".canvas");
     canvas.setAttribute("style", `grid-template-columns:repeat(${width},1fr`);
     for (let i = 0; i < width * row; i++) {
-        cell = document.createElement("div");
+       
+        let cell = document.createElement("div");
         cell.setAttribute("style", "border:solid 0.1px black");
         canvas.appendChild(cell);
+        cell.classList.toggle("cell");
         canvas.addEventListener("mousedown", readyToDraw);
     }
 }
@@ -71,10 +75,10 @@ function makeColorPallet() {
 }
 
 function clearButton(){
-    const canvasChildren=document.querySelector(".canvas").children;
-    const cells=Array.from(canvasChildren);
     const clear=document.querySelector(".button");
     clear.addEventListener("click",()=>{
+        const canvasChildren=document.querySelector(".canvas").children;
+        const cells=Array.from(canvasChildren);
         reset(cells);
     });
 
@@ -86,7 +90,20 @@ function reset(cells){
     
 }
     
+function changeGrid(cells){
+    const range = document.querySelector(".slider");
+    
+    range.addEventListener("input",()=>{
+        const canvas=document.querySelector(".canvas");
+        while(canvas.firstChild){
+            canvas.removeChild(canvas.firstChild);
+        }
+     
+        makeGrid(range.value,range.value);
+    
+    })
 
+}
 
 
 
@@ -94,8 +111,10 @@ function reset(cells){
 function main() {
     moveIndicator();
     makeGrid(16, 16);
+    changeGrid()
     makeColorPallet();
     clearButton();
+    changeGrid();
 }
 
 main();
