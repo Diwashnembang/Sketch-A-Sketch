@@ -31,24 +31,39 @@ function makeGrid(width, row) {
         cell.setAttribute("style", "border:solid 0.1px black");
         canvas.appendChild(cell);
         cell.classList.toggle("cell");
-        canvas.addEventListener("mousedown", readyToDraw);
     }
+    canvas.addEventListener("mousedown", readyToDraw);
+    canvas.addEventListener("touchstart",readyToDraw);
 }
 
 
-function readyToDraw() {
+function readyToDraw(e) {
     const children =document.querySelector(".canvas").children;
     const cells = Array.from(children);
+    console.log(e.type)
 
     cells.forEach((cell) => {
             let draw=drawing.bind(cell,brush)
             cell.onclick = () => (cell.style.background = brush);
-            cell.addEventListener("mousemove",draw);
-            document.addEventListener("mouseup", (e) => { 
-                cell.removeEventListener("mousemove", draw)
-            });
+            // for windows /mouse
+            if(e.type==="mousedown"){
+                cell.addEventListener("mousemove",draw);
+                document.addEventListener("mouseup", (e) => { 
+                    cell.removeEventListener("mousemove", draw)
+                    
+                });
+        }
+
+            //for mobile phones
+            cell.ontouch = () => (cell.style.background = brush);
+            cell.addEventListener("touchmove",draw);
+            document.addEventListener("touchend", (e) => { 
+                cell.removeEventListener("touchend", draw)
+
+
             // console.log(document);
         });
+})
 }
 
 
@@ -90,11 +105,11 @@ function reset(cells){
     
 }
     
-function changeGrid(cells){
+function changeGrid(){
     const range = document.querySelector(".slider");
     
+    const canvas=document.querySelector(".canvas");
     range.addEventListener("input",()=>{
-        const canvas=document.querySelector(".canvas");
         while(canvas.firstChild){
             canvas.removeChild(canvas.firstChild);
         }
