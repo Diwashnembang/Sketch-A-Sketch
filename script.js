@@ -48,8 +48,8 @@ function readyToDraw() {
         });
 
         //for mobile phones
-        cell.addEventListener("touchend", draw,{once:true});
-        cell.addEventListener("touchmove", draw,{once:true});
+        // cell.addEventListener("touchend", draw,{once:true});
+        // cell.addEventListener("touchmove", draw,{once:true});
         // document.addEventListener("touchend", (e) => {
         //     cell.removeEventListener("touchend", draw);
         //     cell.removeEventtListener("touchmove", draw);
@@ -62,7 +62,7 @@ function readyToDraw() {
 
 function drawing(color) {
     this.style.background = brush[0];
-
+    console.log(this);
     // state.push(this);
 }
 
@@ -120,4 +120,6 @@ function main() {
 let start=false
 main();
 canvas.addEventListener("mousedown", (e) => readyToDraw());
-canvas.addEventListener("touchstart", readyToDraw);
+canvas.addEventListener("touchstart", (e)=>{
+    readyToDraw();
+    e.stopPropagation()});
