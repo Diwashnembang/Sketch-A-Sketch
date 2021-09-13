@@ -56,7 +56,9 @@ body{
 
 .pallet{
     display: grid;
+    grid-area: pallet;
     grid-template-columns: repeat(5,1fr);
+
 }
 .pallet p{
     grid-column: 1/5;
@@ -65,6 +67,7 @@ body{
 }
 #range-box{
     width: 200px;
+    grid-area: box;
 }
 
 .slider{
@@ -73,6 +76,7 @@ body{
     height: 5px;
     width:100%;
     border-radius: 1rem;
+
     
 }
 
@@ -109,9 +113,12 @@ body{
 
 .button{
     border: solid red 1px;
+    grid-area: clear;
+    background-color: #845ec2;
 }
 
 /* mobile designe */
+/* width of 360 and height of 640px */
 
 #homepage{
     margin: 0.25rem;
@@ -141,8 +148,9 @@ header h1{
 
 .pallet{
     grid-area: pallet;
-    min-height: 11.3125rem;
+    min-height: 8.3125rem;
     width:min(100%,264px);
+  
 
 }
 
@@ -158,6 +166,20 @@ header h1{
 
 .button{
     grid-area: clear;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+    color:black;
+    position: absolute;
+    width: 106px;
+    left: 284px;
+    top: 550px;
+    margin-left: 2rem;
+    padding-left: 2rem;
+    border-radius: 0.5rem;
+
+
 }
 
 #range-box{
@@ -179,25 +201,53 @@ header h1{
         "aside aside canvas  canvas  canvas canvas canvas canvas";
     }
 
-    /* header{
-       
-        
-    }
+   
     .canvas{
-        height:max(100%,408px) ;
-    } */
+        margin-left: 200px;
+        width: 600px;
+        height: 600px;
+     
+    } 
 
-    /* .pallet{
-        grid-column: 1/9;
-    } */
     #tools{
-        /* grid-column: 1/3; */
-        background-color: aqua;
+       grid-template-areas:
+       "pallet pallet pallet pallet pallet pallet pallet pallet"
+       "box box box box box box box box "
+       "clear clear clear clear clear clear clear clear";
+    }
+
+    .pallet{
+        margin-top: 5rem;
+        height: 12.5xrem;
+    }
+
+    .button{
+        position: static;
+        width: 290px;
+        height: 66px;
+        left: 8px;
+        top: 8px;
+        
+        font-family: Teko;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 80px;
+        line-height: 115px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        letter-spacing: 0.05em;
+        
+        color: #000000;
+        
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        padding-left: 4.9rem;
+        padding-top: 0.9rem;
+        border-radius: 0.5rem;
+         
     }
 }
-
-
-
 
 
 
