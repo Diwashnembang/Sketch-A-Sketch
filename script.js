@@ -48,14 +48,14 @@ function readyToDraw() {
         });
 
         //for mobile phones
-        cell.addEventListener("touchend", draw);
-        cell.addEventListener("touchmove", draw);
-        document.addEventListener("touchend", (e) => {
-            cell.removeEventListener("touchend", draw);
-            cell.addEventListener("touchmove", draw);
+        cell.addEventListener("touchend", draw,{once:true});
+        cell.addEventListener("touchmove", draw,{once:true});
+        // document.addEventListener("touchend", (e) => {
+        //     cell.removeEventListener("touchend", draw);
+        //     cell.removeEventtListener("touchmove", draw);
 
-            // console.log(document);
-        });
+        //     // console.log(document);
+        // });
     });
 
 }
